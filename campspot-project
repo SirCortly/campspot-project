@@ -1,9 +1,13 @@
 #!/usr/bin/php
 <?php
 
+use App\AppController;
+
 if (php_sapi_name() !== 'cli') {
     exit;
 }
+
+require __DIR__ . '/vendor/autoload.php';
 
 if (!isset($argv[1]) || !file_exists($argv[1])) {
     echo "Please supply a valid JSON file.\n";
@@ -12,9 +16,12 @@ if (!isset($argv[1]) || !file_exists($argv[1])) {
 
 $json_file = $argv[1];
 $json_string = file_get_contents($json_file);
-if ($json_data === false) {
+if ($json_string === false) {
     echo "Error reading data from JSON file. Please try again with a valid JSON file.\n";
     exit;
 }
 
 $json_data = json_decode($json_string);
+
+$appController = new AppController();
+$appController->handle($json_data);

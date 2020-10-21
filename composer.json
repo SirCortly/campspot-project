@@ -6,5 +6,10 @@
             "email": "lyons.cort@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
 }
