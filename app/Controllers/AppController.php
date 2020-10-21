@@ -1,10 +1,10 @@
 <?php
-namespace App;
+namespace App\Controllers;
 
 use App\Domain\Campsite;
 use App\Domain\DateRange;
 use App\Domain\Reservation;
-use App\SchedulingRules\OneNightGapSchedulingRule;
+use App\Domain\SchedulingRules\OneNightGapSchedulingRule;
 use App\Services\SchedulingService;
 
 class AppController
@@ -20,6 +20,8 @@ class AppController
     }
 
     /**
+     * Check available campsites from json input and output results
+     *
      * @param $json_data
      */
     public function handle($json_data): void
@@ -34,9 +36,15 @@ class AppController
                 $availableCampsites[] = $campsite;
             }
         }
+
+        foreach ($availableCampsites as $availableCampsite) {
+            echo "{$availableCampsite->getName()}\n";
+        }
     }
 
     /**
+     * Create DateRange object from json data
+     *
      * @param $json_data
      *
      * @return DateRange
@@ -51,6 +59,8 @@ class AppController
     }
 
     /**
+     * Create Campsite array from json data
+     *
      * @param $json_data
      *
      * @return Campsite[]
@@ -62,6 +72,16 @@ class AppController
         }, $json_data->campsites);
     }
 
+    /**
+     * Create Reservation array for given Campsite
+     *
+     * @param Campsite $campsite
+     * @param $json_data
+     *
+     * @return Reservation[]
+     *
+     * @throws \Exception
+     */
     private function getReservationsForCampsiteFromJsonData(Campsite $campsite, $json_data): array
     {
         $campsite_id = $campsite->getId();

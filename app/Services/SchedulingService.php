@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Domain\Campsite;
 use App\Domain\DateRange;
 use App\Domain\Reservation;
-use App\SchedulingRules\SchedulingRule;
+use App\Domain\SchedulingRules\SchedulingRule;
 
 class SchedulingService
 {
@@ -24,6 +24,6 @@ class SchedulingService
         array $reservations,
         array $schedulingRules
     ): bool {
-
+        return true;
     }
 }
