@@ -65,3 +65,10 @@ Run the application:
 ```
 *Make sure you change directory to /vagrant before attempting to run the application*'
 *Also, make sure to move any json files you may want to test with into the project directory so that they can be accessed from within the vagrant box*
+
+## Testing 
+
+Tests can be run from within the vagrant box with: 
+```
+./vendor/bin/phpunit tests/
+```
