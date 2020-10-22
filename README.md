@@ -16,7 +16,7 @@ The application consists of the following domain objects:
   - start_date (DateTime)
   - end_date (DateTime)
   
-A SchedulingRule is defined by the *SchedulingRule* interface, which has a single *check* method which will check whether or not that rule passes for a given Date Range and set of Reservations. It is currently implemented by two rules: 
+A Scheduling Rule is defined by the *SchedulingRule* interface, which has a single *check* method which will check whether or not that rule passes for a given Date Range and set of Reservations. It is currently implemented by two rules: 
 - AlreadyReservedSchedulingRule
   - Will check whether any of the dates are already reserved
 - OneNightGapSchedulingRule
