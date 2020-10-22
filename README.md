@@ -35,6 +35,12 @@ In order to run this project you will first need to clone this repository:
 git clone https://github.com/SirCortly/campspot-project.git
 ```
 
+Make sure you have VirtualBox and Vagrant installed: 
+```
+https://www.virtualbox.org/wiki/Downloads
+https://www.vagrantup.com/docs/installation
+```
+
 Change directory and run vagrant up to initialize the Vagrant box:
 ```
 cd campspot-project/
