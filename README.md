@@ -22,7 +22,7 @@ A Scheduling Rule is defined by the *SchedulingRule* interface, which has a sing
 - OneNightGapSchedulingRule
   - Will check whether scheduling these dates will create a one day gap between existing reservations
  
-New rules can be added by creating new classes implementing the *SchedulingRule* interface.
+*New rules can be added by creating new classes implementing the SchedulingRule interface.*
 
 *SchedulingService::canReservationBeMade* takes a date range, an array of reservations, and an array of Scheduling Rules to check against. If this were to be extended to allow for campsites to determine which rules they wanted their schedules to abide by, you would just have to modify which rules you are passing into this method.
 
