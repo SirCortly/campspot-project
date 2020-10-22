@@ -40,7 +40,7 @@ class AppController
         }
 
         foreach ($availableCampsites as $availableCampsite) {
-            echo '"' . $availableCampsite->getName() . '"\n';
+            echo '"' . $availableCampsite->getName() . '"' . "\n";
         }
     }
 

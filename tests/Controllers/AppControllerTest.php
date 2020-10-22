@@ -51,7 +51,10 @@ class AppControllerTest extends \PHPUnit\Framework\TestCase
         $json_data = json_decode($json);
         $app_controller = new AppController(new SchedulingService());
 
-        $this->expectOutputString('"Comfy Cabin"\n"Rickety Cabin"\n"Cabin in the Woods"\n');
+        $this->expectOutputString('"Comfy Cabin"
+"Rickety Cabin"
+"Cabin in the Woods"
+');
 
         $app_controller->handle($json_data);
     }
