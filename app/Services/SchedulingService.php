@@ -12,18 +12,22 @@ class SchedulingService
      * Check whether campsite is available to book for given date range and scheduling rules
      *
      * @param DateRange $date_range
-     * @param Campsite $campsite
      * @param Reservation[] $reservations
      * @param SchedulingRule[] $schedulingRules
      *
      * @return bool
      */
-    public function isCampsiteAvailable(
+    public function canReservationBeMade(
         DateRange $date_range,
-        Campsite $campsite,
         array $reservations,
         array $schedulingRules
     ): bool {
+        foreach ($schedulingRules as $schedulingRule) {
+            if (!$schedulingRule->check($date_range, $reservations)) {
+                return false;
+            }
+        }
+
         return true;
     }
 }

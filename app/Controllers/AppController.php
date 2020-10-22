@@ -4,7 +4,9 @@ namespace App\Controllers;
 use App\Domain\Campsite;
 use App\Domain\DateRange;
 use App\Domain\Reservation;
+use App\Domain\SchedulingRules\AlreadyReservedSchedulingRule;
 use App\Domain\SchedulingRules\OneNightGapSchedulingRule;
+use App\Domain\SchedulingRules\SchedulingRule;
 use App\Services\SchedulingService;
 
 class AppController
@@ -32,13 +34,13 @@ class AppController
         $availableCampsites = [];
         foreach ($campsites as $campsite) {
             $reservations = $this->getReservationsForCampsiteFromJsonData($campsite, $json_data);
-            if ($this->scheduling_service->isCampsiteAvailable($date_range, $campsite, $reservations, [new OneNightGapSchedulingRule()])) {
+            if ($this->scheduling_service->canReservationBeMade($date_range, $reservations, $this->getSchedulingRules())) {
                 $availableCampsites[] = $campsite;
             }
         }
 
         foreach ($availableCampsites as $availableCampsite) {
-            echo "{$availableCampsite->getName()}\n";
+            echo '"' . $availableCampsite->getName() . '"\n';
         }
     }
 
@@ -97,5 +99,16 @@ class AppController
             $date_range = new DateRange(new \DateTime($reservation->startDate), new \DateTime($reservation->endDate));
             return new Reservation($reservation->campsiteId, $date_range);
         }, $reservations_for_campsite);
+    }
+
+    /**
+     * @return SchedulingRule[]
+     */
+    private function getSchedulingRules(): array
+    {
+        return [
+            new AlreadyReservedSchedulingRule(),
+            new OneNightGapSchedulingRule()
+        ];
     }
 }
