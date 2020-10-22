@@ -31,6 +31,14 @@ class OneNightGapSchedulingRule implements SchedulingRule
         return true;
     }
 
+    /**
+     * Get the number of days between two datetimes
+     *
+     * @param DateTime $dateTimeOne
+     * @param DateTime $dateTimeTwo
+     *
+     * @return int
+     */
     private function getDaysBetweenDates(DateTime $dateTimeOne, DateTime $dateTimeTwo): int
     {
         if ($dateTimeOne < $dateTimeTwo) {

@@ -35,6 +35,14 @@ class AlreadyReservedSchedulingRule implements SchedulingRule
         return true;
     }
 
+    /**
+     * Check whether a date falls within a date range
+     *
+     * @param DateTime $date
+     * @param DateRange $date_range
+     *
+     * @return bool
+     */
     private function isDateBetweenDates(DateTime $date, DateRange $date_range): bool
     {
         return $date >= $date_range->getStartDate() && $date <= $date_range->getEndDate();
